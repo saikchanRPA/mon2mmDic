@@ -5,7 +5,7 @@ import { Asset } from "expo-asset";
 const DB_NAME = "monDic.db";
 let db: SQLite.SQLiteDatabase | null = null;
 
-export async function openDatabase(): Promise<any> {
+export async function openDatabase(): Promise<SQLite.SQLiteDatabase> {
   if (db) return db;
 
   // If using a bundled database, copy from assets on first run
@@ -15,7 +15,7 @@ export async function openDatabase(): Promise<any> {
     const asset = Asset.fromModule(require("../../assets/monDic.db"));
     await FileSystem.downloadAsync(asset.uri, dbUri);
   }
-  db = SQLite.openDatabaseSync(DB_NAME) as any; // Cast to any to allow transaction
+  db = await SQLite.openDatabaseAsync(DB_NAME) as any; // Cast to any to allow transaction
   return db;
 }
 

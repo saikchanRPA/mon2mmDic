@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "msedge",
+            "name": "http://192.168.88.133:8081",
+            "request": "launch",
+            "url": "http://192.168.88.133:8081"
+        }
+    ]
+}
